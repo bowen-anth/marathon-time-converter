@@ -98,7 +98,7 @@ console.log(calcTimePerMileForGoal())
     return (
         <>
             <main className="main">
-                <h1>Goal Times</h1>
+                <h1>Goal Time & Distance</h1>
                 <div className="goal-container">
                         {/* KM */}
                         <label htmlFor="goalKm">Km</label>
@@ -137,7 +137,7 @@ console.log(calcTimePerMileForGoal())
                         onChange={handleChange}
                         />
                 </div>
-                <h1>Actual Times</h1>
+                <h1>Time & Distance Ran</h1>
                     <div className="user-input-container">
                         {/* KM */}
                         <label htmlFor="km">Km</label>
