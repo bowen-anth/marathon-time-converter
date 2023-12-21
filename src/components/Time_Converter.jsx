@@ -76,8 +76,11 @@ console.log(userInput)
 
     const calcTimePerMileForGoal = () => {
         const goalTimeCompare = userInput.goalHours*3600 + userInput.goalMinutes*60 - totalSeconds
-        const minutes = Math.floor((goalTimeCompare / 60 ) / userInput.miles)
-        const seconds = Math.round(((goalTimeCompare / 60 ) / userInput.miles - minutes) * 60)
+        const distanceRemaining = userInput.goalMiles - userInput.miles
+        const minutes = Math.floor((goalTimeCompare / 60 ) / distanceRemaining)
+        const remainingSeconds = goalTimeCompare - minutes * 60
+        const seconds = Math.round(((goalTimeCompare / 60 ) / distanceRemaining - minutes) * 60)
+        // const seconds = Math.floor(remainingSeconds % 60)
         const timePerMileForGoal = `${minutes}:${seconds} / mile`
         return timePerMileForGoal
     }
