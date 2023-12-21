@@ -10,6 +10,11 @@
   font-size: 1.5rem;
 }
 
+h1 {
+  margin: 1rem auto;
+  text-align: center;
+}
+
 .input-class {
   width: min(5rem, 2rem);
   height: 2rem;
@@ -29,11 +34,17 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.goal-container {
+  display: flex;
+  justify-content: center;
+  gap: .25rem;
+  margin: 1rem auto;
+}
+
 .user-input-container {
   display: flex;
   justify-content: center;
   gap: .25rem;
-  flex-grow: 1;
   /* align-items: center; */
 }
 
