@@ -27,10 +27,10 @@ console.log(userInput)
             if (name === "goalKm" && value !== "") {
                 updatedFormData = {
                     ...updatedFormData,
-                    goalMiles: value * 1.60934
+                    goalMiles: value / 1.60934
                 }
-            }
-            if (name === "goalMiles" && value !== "") {
+            } else if
+             (name === "goalMiles" && value !== "") {
                 updatedFormData = {
                     ...updatedFormData,
                     goalKm: value * 1.60934
@@ -39,10 +39,10 @@ console.log(userInput)
             if (name === "km" && value !== "") {
                 updatedFormData = {
                     ...updatedFormData,
-                    mi: value * 1.60934
+                    miles: value / 1.60934
                 }
-            }
-            if (name === "miles" && value !== "") {
+            } else if
+             (name === "miles" && value !== "") {
                 updatedFormData = {
                     ...updatedFormData,
                     km: value * 1.60934
@@ -66,7 +66,7 @@ console.log(userInput)
         return timePerMile
     }
 
-        //time in min/km
+        //time in time / km
         const calcTimePerKm = () => {
             const minutes = Math.floor((totalSeconds / 60 ) / userInput.km)
             const seconds = Math.round(((totalSeconds / 60 ) / userInput.km - minutes) * 60)
@@ -81,6 +81,16 @@ console.log(userInput)
         const timePerMileForGoal = `${minutes}:${seconds} / mile`
         return timePerMileForGoal
     }
+
+            //time in time / km
+            const calcTimePerKmForGoal = () => {
+                const goalTimeCompare = userInput.goalHours*3600 + userInput.goalMinutes*60 - totalSeconds
+                const minutes = Math.floor((goalTimeCompare / 60 ) / userInput.km)
+                const seconds = Math.round(((goalTimeCompare / 60 ) / userInput.km - minutes) * 60)
+                const timePerKm = `${minutes}:${seconds} / Km`
+                return timePerKm
+            }
+
 console.log(calcTimePerMileForGoal())
     return (
         <>
@@ -175,7 +185,7 @@ console.log(calcTimePerMileForGoal())
                 </div>
                 <div className="time-per-distance-container">
                             <span>Pace: {calcTimePerMile()} || {calcTimePerKm()}</span>
-                            <span>Goal Pace: {calcTimePerMileForGoal()} || {calcTimePerKm()}</span>
+                            <span>Goal Pace: {calcTimePerMileForGoal()} || {calcTimePerKmForGoal()}</span>
                         </div>
             </main>
         </>
