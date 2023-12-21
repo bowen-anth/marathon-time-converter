@@ -8,7 +8,7 @@ export default function Time_Converter() {
         seconds: ""
     })
 
-    let calcTime
+  
     let totalSeconds
 
     console.log(time)
@@ -35,18 +35,21 @@ export default function Time_Converter() {
     const calcTimePerMile = () => {
         const minutes = Math.floor((totalSeconds / 60 ) / time.miles)
         const seconds = Math.round(((totalSeconds / 60 ) / time.miles - minutes) * 60)
-        const timePerMile = `${minutes} min / ${seconds} sec`
+        const timePerMile = `${minutes}:${seconds} / mile`
         return timePerMile
     }
 
     const calcTimePerMileForRecord = () => {
-
+        const recordTimeCompare = 7200 - totalSeconds
+        const minutes = Math.floor((recordTimeCompare / 60 ) / time.miles)
+        const seconds = Math.round(((recordTimeCompare / 60 ) / time.miles - minutes) * 60)
+        const timePerMileForRecord = `${minutes}:${seconds} / mile`
+        return timePerMileForRecord
     }
-
+console.log(calcTimePerMileForRecord())
     return (
         <>
             <main className="main">
-                <h1>hi</h1>
                     <div className="user-input-container">
                         {/* Miles */}
                         <label htmlFor="miles">Miles</label>
@@ -85,8 +88,11 @@ export default function Time_Converter() {
                         onChange={handleChange}
                         >
                         </input>
-                        <div>{calcTimePerMile()}</div>
                 </div>
+                <div className="time-per-distance-container">
+                            <span>Pace: {calcTimePerMile()}</span>
+                            <span>Goal Pace: {calcTimePerMileForRecord()}</span>
+                        </div>
             </main>
         </>
     )

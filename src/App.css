@@ -1,6 +1,13 @@
 .main {
-  width: 70%;
-  margin: 3rem auto;
+  /* width: 70%; */
+  margin: 25vh auto;
+  /* display: flex; */
+  /* align-content: center;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  align-items: center; */
+  font-size: 1.5rem;
 }
 
 .input-class {
@@ -24,6 +31,16 @@ input[type=number] {
 
 .user-input-container {
   display: flex;
+  justify-content: center;
   gap: .25rem;
-  align-items: center;
+  flex-grow: 1;
+  /* align-items: center; */
+}
+
+.time-per-distance-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 1rem;
 }
