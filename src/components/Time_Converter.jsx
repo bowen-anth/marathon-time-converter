@@ -33,7 +33,10 @@ export default function Time_Converter() {
     console.log(timeInSeconds())
     //time in min/mi
     const calcTimePerMile = () => {
-        return (totalSeconds / 60 ) / time.miles
+        const minutes = Math.floor((totalSeconds / 60 ) / time.miles)
+        const seconds = Math.round(((totalSeconds / 60 ) / time.miles - minutes) * 60)
+        const timePerMile = `${minutes} min / ${seconds} sec`
+        return timePerMile
     }
 
     const calcTimePerMileForRecord = () => {
