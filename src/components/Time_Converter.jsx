@@ -62,7 +62,8 @@ console.log(userInput)
     const calcTimePerMile = () => {
         const minutes = Math.floor((totalSeconds / 60 ) / userInput.miles)
         const seconds = Math.round(((totalSeconds / 60 ) / userInput.miles - minutes) * 60)
-        const timePerMile = `${minutes}:${seconds} / mile`
+        const formattedSeconds = String(seconds).padStart(2, '0')
+        const timePerMile = `${minutes}:${formattedSeconds} / mile`
         return timePerMile
     }
 
@@ -70,7 +71,8 @@ console.log(userInput)
         const calcTimePerKm = () => {
             const minutes = Math.floor((totalSeconds / 60 ) / userInput.km)
             const seconds = Math.round(((totalSeconds / 60 ) / userInput.km - minutes) * 60)
-            const timePerKm = `${minutes}:${seconds} / Km`
+            const formattedSeconds = String(seconds).padStart(2, '0')
+            const timePerKm = `${minutes}:${formattedSeconds} / Km`
             return timePerKm
         }
 
@@ -80,8 +82,8 @@ console.log(userInput)
         const minutes = Math.floor((goalTimeCompare / 60 ) / distanceRemaining)
         const remainingSeconds = goalTimeCompare - minutes * 60
         const seconds = Math.round(((goalTimeCompare / 60 ) / distanceRemaining - minutes) * 60)
-        // const seconds = Math.floor(remainingSeconds % 60)
-        const timePerMileForGoal = `${minutes}:${seconds} / mile`
+        const formattedSeconds = String(seconds).padStart(2, '0')
+        const timePerMileForGoal = `${minutes}:${formattedSeconds} / mile`
         return timePerMileForGoal
     }
 
@@ -90,7 +92,8 @@ console.log(userInput)
                 const goalTimeCompare = userInput.goalHours*3600 + userInput.goalMinutes*60 - totalSeconds
                 const minutes = Math.floor((goalTimeCompare / 60 ) / userInput.km)
                 const seconds = Math.round(((goalTimeCompare / 60 ) / userInput.km - minutes) * 60)
-                const timePerKm = `${minutes}:${seconds} / Km`
+                const formattedSeconds = String(seconds).padStart(2, '0')
+                const timePerKm = `${minutes}:${formattedSeconds} / Km`
                 return timePerKm
             }
 
