@@ -1,24 +1,25 @@
 import React, { useState } from "react"
 
 export default function Time_Converter() {
-    const [time, setTime] = useState({
+    const [userInput, setUserInput] = useState({
+        goalKm: "",
+        goalMiles: "",
+        goalHours: "",
+        goalMinutes: "",
         km: "",
         miles: "",
         hours: "",
         minutes: "",
         seconds: ""
     })
-
-  
+console.log(userInput)
     let totalSeconds
-
-    console.log(time)
 
     //numbers going from input to state
     function handleChange(event) {
         console.log(event)
         const {name, value, type, checked} = event.target
-        setTime(prevFormData => {
+        setUserInput(prevFormData => {
             return {
                 ...prevFormData,
                 [name]: type === "checkbox" ? checked : Number(value)
@@ -27,86 +28,86 @@ export default function Time_Converter() {
     }
     //converting time to total seconds
     const timeInSeconds = () => {
-        totalSeconds = (time.hours * 3600) + (time.minutes * 60) + time.seconds
+        totalSeconds = (userInput.hours * 3600) + (userInput.minutes * 60) + userInput.seconds
         return totalSeconds
     }
 
     console.log(timeInSeconds())
     //time in min/mi
     const calcTimePerMile = () => {
-        const minutes = Math.floor((totalSeconds / 60 ) / time.miles)
-        const seconds = Math.round(((totalSeconds / 60 ) / time.miles - minutes) * 60)
+        const minutes = Math.floor((totalSeconds / 60 ) / userInput.miles)
+        const seconds = Math.round(((totalSeconds / 60 ) / userInput.miles - minutes) * 60)
         const timePerMile = `${minutes}:${seconds} / mile`
         return timePerMile
     }
 
         //time in min/km
         const calcTimePerKm = () => {
-            const minutes = Math.floor((totalSeconds / 60 ) / time.km)
-            const seconds = Math.round(((totalSeconds / 60 ) / time.km - minutes) * 60)
+            const minutes = Math.floor((totalSeconds / 60 ) / userInput.km)
+            const seconds = Math.round(((totalSeconds / 60 ) / userInput.km - minutes) * 60)
             const timePerKm = `${minutes}:${seconds} / Km`
             return timePerKm
         }
 
-    const calcTimePerMileForRecord = () => {
-        const recordTimeCompare = 7200 - totalSeconds
-        const minutes = Math.floor((recordTimeCompare / 60 ) / time.miles)
-        const seconds = Math.round(((recordTimeCompare / 60 ) / time.miles - minutes) * 60)
-        const timePerMileForRecord = `${minutes}:${seconds} / mile`
-        return timePerMileForRecord
+    const calcTimePerMileForGoal = () => {
+        const goalTimeCompare = userInput.goalHours*3600 + userInput.goalMinutes*60 - totalSeconds
+        const minutes = Math.floor((goalTimeCompare / 60 ) / userInput.miles)
+        const seconds = Math.round(((goalTimeCompare / 60 ) / userInput.miles - minutes) * 60)
+        const timePerMileForGoal = `${minutes}:${seconds} / mile`
+        return timePerMileForGoal
     }
-console.log(calcTimePerMileForRecord())
+console.log(calcTimePerMileForGoal())
     return (
         <>
             <main className="main">
                 <h1>Goal Times</h1>
                 <div className="goal-container">
                         {/* KM */}
-                        <label htmlFor="goal-km">Km</label>
+                        <label htmlFor="goalKm">Km</label>
                         <input type="number" 
-                        id="goal-km" 
+                        id="goalKm" 
                         className="input-class"
-                        name="goal-km"
-                        value={time.goalKm}
+                        name="goalKm"
+                        value={userInput.goalKm}
                         onChange={handleChange}
                         />
                         {/* Miles */}
-                        <label htmlFor="goal-miles">Miles</label>
+                        <label htmlFor="goalMiles">Miles</label>
                         <input type="number" 
-                        id="goal-miles" 
+                        id="goalMiles" 
                         className="input-class"
-                        name="goal-miles"
-                        value={time.goalMiles}
+                        name="goalMiles"
+                        value={userInput.goalMiles}
                         onChange={handleChange}
                         />
                         {/* Hours */}
-                        <label htmlFor="goal-hours">Hours</label>
+                        <label htmlFor="goalHours">Hours</label>
                         <input type="number" 
-                        id="hours" 
+                        id="goalHours" 
                         className="input-class"
-                        name="hours"
-                        value={time.goal-hours}
+                        name="goalHours"
+                        value={userInput.goalHours}
                         onChange={handleChange}
                         />
                         {/* Minutes */}
-                        <label htmlFor="goal-minutes">Minutes</label>
+                        <label htmlFor="goalMinutes">Minutes</label>
                         <input type="number" 
-                        id="goal-minutes" 
+                        id="goalMinutes" 
                         className="input-class"
-                        name="goal-minutes"
-                        value={time.goal-minutes}
+                        name="goalMinutes"
+                        value={userInput.goalMinutes}
                         onChange={handleChange}
                         />
                 </div>
                 <h1>Actual Times</h1>
                     <div className="user-input-container">
                         {/* KM */}
-                        <label htmlFor="miles">Km</label>
+                        <label htmlFor="km">Km</label>
                         <input type="number" 
                         id="km" 
                         className="input-class"
                         name="km"
-                        value={time.km}
+                        value={userInput.km}
                         onChange={handleChange}
                         />
                         {/* Miles */}
@@ -115,7 +116,7 @@ console.log(calcTimePerMileForRecord())
                         id="miles" 
                         className="input-class"
                         name="miles"
-                        value={time.miles}
+                        value={userInput.miles}
                         onChange={handleChange}
                         />
                         {/* Hours */}
@@ -124,7 +125,7 @@ console.log(calcTimePerMileForRecord())
                         id="hours" 
                         className="input-class"
                         name="hours"
-                        value={time.hours}
+                        value={userInput.hours}
                         onChange={handleChange}
                         />
                         {/* Minutes */}
@@ -133,7 +134,7 @@ console.log(calcTimePerMileForRecord())
                         id="minutes" 
                         className="input-class"
                         name="minutes"
-                        value={time.minutes}
+                        value={userInput.minutes}
                         onChange={handleChange}
                         />
                         {/* Seconds */}
@@ -142,14 +143,14 @@ console.log(calcTimePerMileForRecord())
                         id="seconds" 
                         className="input-class"
                         name="seconds"
-                        value={time.seconds}
+                        value={userInput.seconds}
                         onChange={handleChange}
                         >
                         </input>
                 </div>
                 <div className="time-per-distance-container">
                             <span>Pace: {calcTimePerMile()} || {calcTimePerKm()}</span>
-                            <span>Goal Pace: {calcTimePerMileForRecord()} || {calcTimePerKm()}</span>
+                            <span>Goal Pace: {calcTimePerMileForGoal()} || {calcTimePerKm()}</span>
                         </div>
             </main>
         </>
