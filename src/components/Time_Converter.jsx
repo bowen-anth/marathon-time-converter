@@ -19,11 +19,36 @@ console.log(userInput)
     function handleChange(event) {
         console.log(event)
         const {name, value, type, checked} = event.target
-        setUserInput(prevFormData => {
-            return {
+        setUserInput((prevFormData) => {
+            let updatedFormData = {
                 ...prevFormData,
                 [name]: type === "checkbox" ? checked : Number(value)
             }
+            if (name === "goalKm" && value !== "") {
+                updatedFormData = {
+                    ...updatedFormData,
+                    goalMiles: value * 1.60934
+                }
+            }
+            if (name === "goalMiles" && value !== "") {
+                updatedFormData = {
+                    ...updatedFormData,
+                    goalKm: value * 1.60934
+                }
+            }
+            if (name === "km" && value !== "") {
+                updatedFormData = {
+                    ...updatedFormData,
+                    mi: value * 1.60934
+                }
+            }
+            if (name === "miles" && value !== "") {
+                updatedFormData = {
+                    ...updatedFormData,
+                    km: value * 1.60934
+                }
+            }
+            return updatedFormData
         })
     }
     //converting time to total seconds
